@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище gr691_fnvModelContainer" CdmEntityContainer="gr691_fnvEntities">
+    <EntitySetMapping Name="Instructeds">
+      <EntityTypeMapping TypeName="gr691_fnvModel.Instructed">
+        <MappingFragment StoreEntitySet="Instructed">
+          <ScalarProperty Name="Номер_инструктурируемого" ColumnName="Номер инструктурируемого" />
+          <ScalarProperty Name="ФИО_инструктурируемого" ColumnName="ФИО инструктурируемого" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructors">
+      <EntityTypeMapping TypeName="gr691_fnvModel.Instructor">
+        <MappingFragment StoreEntitySet="Instructor">
+          <ScalarProperty Name="Номер_инструктора" ColumnName="Номер инструктора" />
+          <ScalarProperty Name="ФИО_инструктора" ColumnName="ФИО инструктора" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OSJs">
+      <EntityTypeMapping TypeName="gr691_fnvModel.OSJ">
+        <MappingFragment StoreEntitySet="OSJ">
+          <ScalarProperty Name="Номер_инструктажа" ColumnName="Номер инструктажа" />
+          <ScalarProperty Name="Название_инструктажа" ColumnName="Название инструктажа" />
+          <ScalarProperty Name="Номер_инструктурируемого" ColumnName="Номер инструктурируемого" />
+          <ScalarProperty Name="Номер_инструктора" ColumnName="Номер инструктора" />
+          <ScalarProperty Name="Номер_прохождения" ColumnName="Номер прохождения" />
+          <ScalarProperty Name="Номер_нарушения" ColumnName="Номер нарушения" />
+          <ScalarProperty Name="Номер_вида_инструктажа" ColumnName="Номер вида инструктажа" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Passages">
+      <EntityTypeMapping TypeName="gr691_fnvModel.Passage">
+        <MappingFragment StoreEntitySet="Passage">
+          <ScalarProperty Name="Номер_прохождения" ColumnName="Номер прохождения" />
+          <ScalarProperty Name="Дата_прохождения" ColumnName="Дата прохождения" />
+          <ScalarProperty Name="Дата_повторного_прохождения" ColumnName="Дата повторного прохождения" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewInstructs">
+      <EntityTypeMapping TypeName="gr691_fnvModel.ViewInstruct">
+        <MappingFragment StoreEntitySet="ViewInstruct">
+          <ScalarProperty Name="Номер_вида_инструктажа" ColumnName="Номер вида инструктажа" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Violations">
+      <EntityTypeMapping TypeName="gr691_fnvModel.Violation">
+        <MappingFragment StoreEntitySet="Violation">
+          <ScalarProperty Name="Номер_нарушения" ColumnName="Номер нарушения" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

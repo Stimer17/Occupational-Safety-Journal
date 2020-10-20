@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище gr691_fnvModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Instructed">
+          <Key>
+            <PropertyRef Name="Номер инструктурируемого" />
+          </Key>
+          <Property Name="Номер инструктурируемого" Type="int" Nullable="false" />
+          <Property Name="ФИО инструктурируемого" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Номер инструктора" />
+          </Key>
+          <Property Name="Номер инструктора" Type="int" Nullable="false" />
+          <Property Name="ФИО инструктора" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="OSJ">
+          <Key>
+            <PropertyRef Name="Номер инструктажа" />
+          </Key>
+          <Property Name="Номер инструктажа" Type="int" Nullable="false" />
+          <Property Name="Название инструктажа" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер инструктурируемого" Type="int" />
+          <Property Name="Номер инструктора" Type="int" />
+          <Property Name="Номер прохождения" Type="int" />
+          <Property Name="Номер нарушения" Type="int" />
+          <Property Name="Номер вида инструктажа" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passage">
+          <Key>
+            <PropertyRef Name="Номер прохождения" />
+          </Key>
+          <Property Name="Номер прохождения" Type="int" Nullable="false" />
+          <Property Name="Дата прохождения" Type="date" />
+          <Property Name="Дата повторного прохождения" Type="date" />
+        </EntityType>
+        <EntityType Name="ViewInstruct">
+          <Key>
+            <PropertyRef Name="Номер вида инструктажа" />
+          </Key>
+          <Property Name="Номер вида инструктажа" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Violation">
+          <Key>
+            <PropertyRef Name="Номер нарушения" />
+          </Key>
+          <Property Name="Номер нарушения" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__OSJ__Номер инстр__04115F34">
+          <End Role="Instructed" Type="Self.Instructed" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructed">
+              <PropertyRef Name="Номер инструктурируемого" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер инструктурируемого" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер инстр__0505836D">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Номер инструктора" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер инструктора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер наруш__06EDCBDF">
+          <End Role="Violation" Type="Self.Violation" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Violation">
+              <PropertyRef Name="Номер нарушения" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер нарушения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер прохо__05F9A7A6">
+          <End Role="Passage" Type="Self.Passage" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passage">
+              <PropertyRef Name="Номер прохождения" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер прохождения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OSJ_ViewInstruct">
+          <End Role="ViewInstruct" Type="Self.ViewInstruct" Multiplicity="1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewInstruct">
+              <PropertyRef Name="Номер вида инструктажа" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер вида инструктажа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище gr691_fnvModelContainer">
+          <EntitySet Name="Instructed" EntityType="Self.Instructed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSJ" EntityType="Self.OSJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passage" EntityType="Self.Passage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewInstruct" EntityType="Self.ViewInstruct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Violation" EntityType="Self.Violation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OSJ__Номер инстр__04115F34" Association="Self.FK__OSJ__Номер инстр__04115F34">
+            <End Role="Instructed" EntitySet="Instructed" />
+            <End Role="OSJ" EntitySet="OSJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер инстр__0505836D" Association="Self.FK__OSJ__Номер инстр__0505836D">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="OSJ" EntitySet="OSJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер наруш__06EDCBDF" Association="Self.FK__OSJ__Номер наруш__06EDCBDF">
+            <End Role="Violation" EntitySet="Violation" />
+            <End Role="OSJ" EntitySet="OSJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер прохо__05F9A7A6" Association="Self.FK__OSJ__Номер прохо__05F9A7A6">
+            <End Role="Passage" EntitySet="Passage" />
+            <End Role="OSJ" EntitySet="OSJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OSJ_ViewInstruct" Association="Self.FK_OSJ_ViewInstruct">
+            <End Role="ViewInstruct" EntitySet="ViewInstruct" />
+            <End Role="OSJ" EntitySet="OSJ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gr691_fnvModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Instructed">
+          <Key>
+            <PropertyRef Name="Номер_инструктурируемого" />
+          </Key>
+          <Property Name="Номер_инструктурируемого" Type="Int32" Nullable="false" />
+          <Property Name="ФИО_инструктурируемого" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OSJs" Relationship="Self.FK__OSJ__Номер_инстр__04115F34" FromRole="Instructed" ToRole="OSJ" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Номер_инструктора" />
+          </Key>
+          <Property Name="Номер_инструктора" Type="Int32" Nullable="false" />
+          <Property Name="ФИО_инструктора" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OSJs" Relationship="Self.FK__OSJ__Номер_инстр__0505836D" FromRole="Instructor" ToRole="OSJ" />
+        </EntityType>
+        <EntityType Name="OSJ">
+          <Key>
+            <PropertyRef Name="Номер_инструктажа" />
+          </Key>
+          <Property Name="Номер_инструктажа" Type="Int32" Nullable="false" />
+          <Property Name="Название_инструктажа" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_инструктурируемого" Type="Int32" />
+          <Property Name="Номер_инструктора" Type="Int32" />
+          <Property Name="Номер_прохождения" Type="Int32" />
+          <Property Name="Номер_нарушения" Type="Int32" />
+          <Property Name="Номер_вида_инструктажа" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instructed" Relationship="Self.FK__OSJ__Номер_инстр__04115F34" FromRole="OSJ" ToRole="Instructed" />
+          <NavigationProperty Name="Instructor" Relationship="Self.FK__OSJ__Номер_инстр__0505836D" FromRole="OSJ" ToRole="Instructor" />
+          <NavigationProperty Name="Violation" Relationship="Self.FK__OSJ__Номер_наруш__06EDCBDF" FromRole="OSJ" ToRole="Violation" />
+          <NavigationProperty Name="Passage" Relationship="Self.FK__OSJ__Номер_прохо__05F9A7A6" FromRole="OSJ" ToRole="Passage" />
+          <NavigationProperty Name="ViewInstruct" Relationship="Self.FK_OSJ_ViewInstruct" FromRole="OSJ" ToRole="ViewInstruct" />
+        </EntityType>
+        <EntityType Name="Passage">
+          <Key>
+            <PropertyRef Name="Номер_прохождения" />
+          </Key>
+          <Property Name="Номер_прохождения" Type="Int32" Nullable="false" />
+          <Property Name="Дата_прохождения" Type="DateTime" Precision="0" />
+          <Property Name="Дата_повторного_прохождения" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OSJs" Relationship="Self.FK__OSJ__Номер_прохо__05F9A7A6" FromRole="Passage" ToRole="OSJ" />
+        </EntityType>
+        <EntityType Name="ViewInstruct">
+          <Key>
+            <PropertyRef Name="Номер_вида_инструктажа" />
+          </Key>
+          <Property Name="Номер_вида_инструктажа" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OSJs" Relationship="Self.FK_OSJ_ViewInstruct" FromRole="ViewInstruct" ToRole="OSJ" />
+        </EntityType>
+        <EntityType Name="Violation">
+          <Key>
+            <PropertyRef Name="Номер_нарушения" />
+          </Key>
+          <Property Name="Номер_нарушения" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OSJs" Relationship="Self.FK__OSJ__Номер_наруш__06EDCBDF" FromRole="Violation" ToRole="OSJ" />
+        </EntityType>
+        <Association Name="FK__OSJ__Номер_инстр__04115F34">
+          <End Role="Instructed" Type="Self.Instructed" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructed">
+              <PropertyRef Name="Номер_инструктурируемого" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер_инструктурируемого" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер_инстр__0505836D">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Номер_инструктора" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер_инструктора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер_наруш__06EDCBDF">
+          <End Role="Violation" Type="Self.Violation" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Violation">
+              <PropertyRef Name="Номер_нарушения" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер_нарушения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OSJ__Номер_прохо__05F9A7A6">
+          <End Role="Passage" Type="Self.Passage" Multiplicity="0..1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passage">
+              <PropertyRef Name="Номер_прохождения" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер_прохождения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OSJ_ViewInstruct">
+          <End Role="ViewInstruct" Type="Self.ViewInstruct" Multiplicity="1" />
+          <End Role="OSJ" Type="Self.OSJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewInstruct">
+              <PropertyRef Name="Номер_вида_инструктажа" />
+            </Principal>
+            <Dependent Role="OSJ">
+              <PropertyRef Name="Номер_вида_инструктажа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gr691_fnvEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Instructeds" EntityType="Self.Instructed" />
+          <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+          <EntitySet Name="OSJs" EntityType="Self.OSJ" />
+          <EntitySet Name="Passages" EntityType="Self.Passage" />
+          <EntitySet Name="ViewInstructs" EntityType="Self.ViewInstruct" />
+          <EntitySet Name="Violations" EntityType="Self.Violation" />
+          <AssociationSet Name="FK__OSJ__Номер_инстр__04115F34" Association="Self.FK__OSJ__Номер_инстр__04115F34">
+            <End Role="Instructed" EntitySet="Instructeds" />
+            <End Role="OSJ" EntitySet="OSJs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер_инстр__0505836D" Association="Self.FK__OSJ__Номер_инстр__0505836D">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="OSJ" EntitySet="OSJs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер_наруш__06EDCBDF" Association="Self.FK__OSJ__Номер_наруш__06EDCBDF">
+            <End Role="Violation" EntitySet="Violations" />
+            <End Role="OSJ" EntitySet="OSJs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OSJ__Номер_прохо__05F9A7A6" Association="Self.FK__OSJ__Номер_прохо__05F9A7A6">
+            <End Role="Passage" EntitySet="Passages" />
+            <End Role="OSJ" EntitySet="OSJs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OSJ_ViewInstruct" Association="Self.FK_OSJ_ViewInstruct">
+            <End Role="ViewInstruct" EntitySet="ViewInstructs" />
+            <End Role="OSJ" EntitySet="OSJs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище gr691_fnvModelContainer" CdmEntityContainer="gr691_fnvEntities">
+          <EntitySetMapping Name="Instructeds">
+            <EntityTypeMapping TypeName="gr691_fnvModel.Instructed">
+              <MappingFragment StoreEntitySet="Instructed">
+                <ScalarProperty Name="Номер_инструктурируемого" ColumnName="Номер инструктурируемого" />
+                <ScalarProperty Name="ФИО_инструктурируемого" ColumnName="ФИО инструктурируемого" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="gr691_fnvModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="Номер_инструктора" ColumnName="Номер инструктора" />
+                <ScalarProperty Name="ФИО_инструктора" ColumnName="ФИО инструктора" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSJs">
+            <EntityTypeMapping TypeName="gr691_fnvModel.OSJ">
+              <MappingFragment StoreEntitySet="OSJ">
+                <ScalarProperty Name="Номер_инструктажа" ColumnName="Номер инструктажа" />
+                <ScalarProperty Name="Название_инструктажа" ColumnName="Название инструктажа" />
+                <ScalarProperty Name="Номер_инструктурируемого" ColumnName="Номер инструктурируемого" />
+                <ScalarProperty Name="Номер_инструктора" ColumnName="Номер инструктора" />
+                <ScalarProperty Name="Номер_прохождения" ColumnName="Номер прохождения" />
+                <ScalarProperty Name="Номер_нарушения" ColumnName="Номер нарушения" />
+                <ScalarProperty Name="Номер_вида_инструктажа" ColumnName="Номер вида инструктажа" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passages">
+            <EntityTypeMapping TypeName="gr691_fnvModel.Passage">
+              <MappingFragment StoreEntitySet="Passage">
+                <ScalarProperty Name="Номер_прохождения" ColumnName="Номер прохождения" />
+                <ScalarProperty Name="Дата_прохождения" ColumnName="Дата прохождения" />
+                <ScalarProperty Name="Дата_повторного_прохождения" ColumnName="Дата повторного прохождения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewInstructs">
+            <EntityTypeMapping TypeName="gr691_fnvModel.ViewInstruct">
+              <MappingFragment StoreEntitySet="ViewInstruct">
+                <ScalarProperty Name="Номер_вида_инструктажа" ColumnName="Номер вида инструктажа" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Violations">
+            <EntityTypeMapping TypeName="gr691_fnvModel.Violation">
+              <MappingFragment StoreEntitySet="Violation">
+                <ScalarProperty Name="Номер_нарушения" ColumnName="Номер нарушения" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

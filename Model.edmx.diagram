@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7afb3cf319441b58c74c9016d9e42e7" Name="Diagram1">
+        <EntityTypeShape EntityType="gr691_fnvModel.Instructed" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_fnvModel.Instructor" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_fnvModel.OSJ" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_fnvModel.Passage" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_fnvModel.ViewInstruct" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_fnvModel.Violation" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="gr691_fnvModel.FK__OSJ__Номер_инстр__04115F34" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_fnvModel.FK__OSJ__Номер_инстр__0505836D" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_fnvModel.FK__OSJ__Номер_наруш__06EDCBDF" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_fnvModel.FK__OSJ__Номер_прохо__05F9A7A6" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_fnvModel.FK_OSJ_ViewInstruct" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
